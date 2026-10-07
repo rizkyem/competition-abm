@@ -1,6 +1,6 @@
-# F&B Competition — Agent-Based Model
+# Competition Agent-Based Model
 
-A Python Agent-Based Model that simulates competition between F&B brands in a
+A Python Agent-Based Model that simulates competition between brands in a
 finite-money artificial economy. Individual customers decide where to spend,
 money changes hands through transactions, and aggregate outcomes (revenue,
 market share, cash, geography) emerge from those decisions.
@@ -149,4 +149,4 @@ data/            Generated CSV output (created at runtime)
   so `customer cash + brand cash` is constant. Optional `income_per_tick` and
   `operating_cost_per_tick` (both default `0`) are tracked as `external_money`.
 - The model is an artificial economy for exploring competition, not a forecast
-  of real F&B performance.
+  of real-world performance.

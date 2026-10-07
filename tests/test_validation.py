@@ -1,4 +1,4 @@
-"""Logic-validation tests for the F&B Competition ABM (PRD section 30).
+"""Logic-validation tests for the Competition ABM (PRD section 30).
 
 Run with::
 
@@ -11,7 +11,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from model import BrandConfig, FnBModel, ModelConfig  # noqa: E402
+from model import BrandConfig, CompetitionModel, ModelConfig  # noqa: E402
 
 
 def base_brands(b_x=7.0, b_y=7.5, price_b=40_000.0, promo_b=0.0, entry_tick=30):
@@ -27,7 +27,7 @@ def run_model(**kwargs):
     kwargs.setdefault("seed", 123)
     kwargs.setdefault("ticks", 365)
     kwargs.setdefault("n_customers", 500)
-    model = FnBModel(ModelConfig(**kwargs))
+    model = CompetitionModel(ModelConfig(**kwargs))
     model.run()
     return model
 
@@ -92,7 +92,7 @@ class ValidationTests(unittest.TestCase):
 
     def test_transaction_transfers_money(self):
         """A purchase should decrease customer cash and increase brand cash."""
-        model = FnBModel(ModelConfig(seed=1, ticks=1, n_customers=50,
+        model = CompetitionModel(ModelConfig(seed=1, ticks=1, n_customers=50,
                                      move_enabled=False,
                                      brands=base_brands(entry_tick=0)))
         before = sum(c.cash for c in model.customers)
@@ -111,7 +111,7 @@ class ValidationTests(unittest.TestCase):
 
     def test_customers_move_when_satisfied(self):
         """Satisfied customers relocate over time (turtle movement)."""
-        model = FnBModel(ModelConfig(seed=123, ticks=365, n_customers=500,
+        model = CompetitionModel(ModelConfig(seed=123, ticks=365, n_customers=500,
                                      move_enabled=True,
                                      brands=base_brands(entry_tick=0)))
         start = [(c.x, c.y) for c in model.customers]
@@ -132,7 +132,7 @@ class ValidationTests(unittest.TestCase):
 
     def test_movement_disabled_keeps_customers_static(self):
         """move_enabled=False reproduces the original static customers."""
-        model = FnBModel(ModelConfig(seed=123, ticks=365, n_customers=500,
+        model = CompetitionModel(ModelConfig(seed=123, ticks=365, n_customers=500,
                                      move_enabled=False,
                                      brands=base_brands(entry_tick=0)))
         start = [(c.x, c.y) for c in model.customers]
@@ -144,7 +144,7 @@ class ValidationTests(unittest.TestCase):
         """A customer should travel to the brand, buy, then move away."""
         brands = [BrandConfig(1, "A", x=5.0, y=5.0, brand_strength=0.8,
                               entry_tick=0)]
-        model = FnBModel(ModelConfig(
+        model = CompetitionModel(ModelConfig(
             seed=7, ticks=80, n_customers=1, move_enabled=True,
             travel_speed=0.5, purchase_radius=0.3, settle_distance=2.0,
             purchase_frequency=1.0, brands=brands))

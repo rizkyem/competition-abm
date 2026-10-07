@@ -1,10 +1,10 @@
-"""Agent definitions for the F&B Competition Agent-Based Model.
+"""Agent definitions for the Competition Agent-Based Model.
 
 Two agent types are modelled:
 
 * :class:`Customer` - an individual consumer with limited cash that decides
   whether and where to purchase each tick.
-* :class:`Brand` - an F&B brand operating one outlet that sells to customers,
+* :class:`Brand` - a brand operating one outlet that sells to customers,
   accumulates cash and may enter the market at a configured tick.
 
 The classes are intentionally plain dataclasses with no external dependencies
@@ -35,7 +35,7 @@ class Customer:
     purchase_frequency: float = 0.3
     loyalty: float = 0.5
     last_purchase_brand: Optional[int] = None
-    # Turtle trip-machine state (see model.FnBModel._update_customers).
+    # Turtle trip-machine state (see model.CompetitionModel._update_customers).
     trip_state: str = "idle"          # "idle" | "outbound" | "retreating"
     target_brand_id: Optional[int] = None
 
@@ -50,7 +50,7 @@ class Customer:
 
 @dataclass
 class Brand:
-    """An F&B brand agent operating a single outlet (MVP)."""
+    """A brand agent operating a single outlet (MVP)."""
 
     brand_id: int
     name: str

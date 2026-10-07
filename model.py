@@ -1,4 +1,4 @@
-"""Core simulation engine for the F&B Competition Agent-Based Model.
+"""Core simulation engine for the Competition Agent-Based Model.
 
 The model holds a finite stock of money. Money only moves between agents
 (customers <-> brands) through transactions, so the internal money supply is
@@ -100,8 +100,8 @@ class ModelConfig:
             ]
 
 
-class FnBModel:
-    """The artificial F&B economy."""
+class CompetitionModel:
+    """The artificial economy."""
 
     def __init__(self, config: Optional[ModelConfig] = None) -> None:
         self.cfg = config or ModelConfig()

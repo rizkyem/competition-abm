@@ -1,4 +1,4 @@
-"""NetLogo-style live dashboard for the F&B Competition ABM.
+"""NetLogo-style live dashboard for the Competition ABM.
 
 Run with::
 
@@ -23,7 +23,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from agents import Brand
-from model import BrandConfig, FnBModel, ModelConfig
+from model import BrandConfig, CompetitionModel, ModelConfig
 
 BRAND_COLORS = {"A": "#1f77b4", "B": "#d62728", "C": "#2ca02c",
                 "D": "#9467bd", "E": "#ff7f0e", "F": "#17becf",
@@ -33,7 +33,7 @@ WORLD = 10.0
 GRAY = "#c9c9c9"
 MAX_BRANDS = 8
 
-st.set_page_config(page_title="F&B Competition ABM", layout="wide")
+st.set_page_config(page_title="Competition ABM", layout="wide")
 
 
 def color_for(name: str, index: int = 0) -> str:
@@ -44,7 +44,7 @@ def color_for(name: str, index: int = 0) -> str:
 # Sidebar: SETUP values (applied on Build & Run)
 # ----------------------------------------------------------------------
 with st.sidebar:
-    st.title("F&B Competition ABM")
+    st.title("Competition ABM")
     st.caption("Start with Brand A alone, then inject competitors live")
 
     with st.expander("Economy", expanded=True):
@@ -119,7 +119,7 @@ def build_model() -> None:
         purchase_radius=purchase_radius, settle_distance=settle_distance,
         cluster_centers=[(a_x, a_y), (sched_b_x, sched_b_y)], brands=brands,
     )
-    st.session_state.model = FnBModel(cfg)
+    st.session_state.model = CompetitionModel(cfg)
     st.session_state.playing = False
     st.session_state.live = {"temp": temperature, "dist": distance_sensitivity,
                              "loyal": loyalty}
@@ -133,7 +133,7 @@ if build or "model" not in st.session_state:
 # ----------------------------------------------------------------------
 # Live actions
 # ----------------------------------------------------------------------
-def add_brand(model: FnBModel, x, y, price, strength, promo, quality=0.7):
+def add_brand(model: CompetitionModel, x, y, price, strength, promo, quality=0.7):
     """Inject a new competitor immediately (affects the very next tick)."""
     used = {b.name for b in model.brands}
     name = next((n for n in "BCDEFGH" if n not in used), None)
@@ -148,7 +148,7 @@ def add_brand(model: FnBModel, x, y, price, strength, promo, quality=0.7):
     return brand
 
 
-def apply_globals(model: FnBModel, live: dict) -> None:
+def apply_globals(model: CompetitionModel, live: dict) -> None:
     """Apply global knobs; scale per-customer values to keep heterogeneity."""
     model.cfg.temperature = live["temp"]
     prev = st.session_state.get("live_prev", {})
@@ -168,7 +168,7 @@ def apply_globals(model: FnBModel, live: dict) -> None:
 # ----------------------------------------------------------------------
 # Figures
 # ----------------------------------------------------------------------
-def geography_figure(model: FnBModel) -> go.Figure:
+def geography_figure(model: CompetitionModel) -> go.Figure:
     fig = go.Figure()
     for i, brand in enumerate(model.brands):
         pts = [c for c in model.customers if c.last_purchase_brand == brand.brand_id]
@@ -200,7 +200,7 @@ def geography_figure(model: FnBModel) -> go.Figure:
     return fig
 
 
-def _brand_lines(model: FnBModel, key_fn, title, ytitle) -> go.Figure:
+def _brand_lines(model: CompetitionModel, key_fn, title, ytitle) -> go.Figure:
     fig = go.Figure()
     for i, brand in enumerate(model.brands):
         fig.add_trace(go.Scatter(

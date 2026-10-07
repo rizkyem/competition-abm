@@ -1,4 +1,4 @@
-# MODEL.md — F&B Competition Agent-Based Model
+# MODEL.md — Competition Agent-Based Model
 
 This document describes the mathematical model implemented in the code: the
 agents, the state variables, the formulas, the tick algorithm, the parameters

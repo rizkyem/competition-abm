@@ -3,12 +3,12 @@
 ## 1. Project Overview
 
 ### Project Name
-**F&B Competition Agent-Based Model**
+**Competition Agent-Based Model**
 
 ### Working Description
-A Python-based Agent-Based Model (ABM) that simulates competition between F&B brands within a geographically distributed artificial economy.
+A Python-based Agent-Based Model (ABM) that simulates competition between brands within a geographically distributed artificial economy.
 
-The simulation models individual agents — primarily **customers and F&B brands** — and observes how their individual decisions create aggregate outcomes such as:
+The simulation models individual agents — primarily **customers and brands** — and observes how their individual decisions create aggregate outcomes such as:
 
 - Revenue
 - Market share
@@ -27,7 +27,7 @@ The simulation will eventually be deployed as an interactive web application usi
 
 # 2. Problem Statement
 
-Traditional business analysis often evaluates F&B competition using aggregate metrics such as revenue, market share, price, and location.
+Traditional business analysis often evaluates competition using aggregate metrics such as revenue, market share, price, and location.
 
 However, these metrics are the result of many individual decisions:
 
@@ -44,7 +44,7 @@ This project aims to demonstrate how these individual behaviors can generate eme
 
 The key question is:
 
-> **What happens to an F&B market when competing brands enter, change location, price their products, and compete for customers within a finite money economy?**
+> **What happens to a market when competing brands enter, change location, price their products, and compete for customers within a finite money economy?**
 
 ---
 
@@ -52,10 +52,10 @@ The key question is:
 
 ## Primary Objectives
 
-1. Build an Agent-Based Model of F&B competition.
+1. Build an Agent-Based Model of competition.
 2. Simulate customers making individual purchasing decisions.
 3. Introduce geographic distance into customer decisions.
-4. Simulate competition between multiple F&B brands.
+4. Simulate competition between multiple brands.
 5. Model money as an actual transferable resource between agents.
 6. Measure how brand entry and location affect market outcomes.
 7. Create an interactive simulation that allows users to change assumptions.
@@ -80,9 +80,9 @@ The initial model will include:
 ### Agents
 
 - Customers
-- F&B Brand A
-- F&B Brand B
-- F&B Brand C
+- Brand A
+- Brand B
+- Brand C
 
 ### Environment
 
@@ -126,7 +126,7 @@ The initial model will include:
 The following features will not be included initially:
 
 - Real-world geographic maps
-- Real F&B company financial statements
+- Real company financial statements
 - Real customer-level transaction data
 - Banking system
 - Loans and credit
@@ -156,7 +156,7 @@ For example:
 
 This money is initially distributed among customers.
 
-Customers use their money to purchase products from F&B brands.
+Customers use their money to purchase products from brands.
 
 Example:
 
@@ -205,7 +205,7 @@ Each customer represents an individual consumer.
 Each simulation period, a customer may:
 
 1. Decide whether to purchase.
-2. Identify available F&B brands.
+2. Identify available brands.
 3. Calculate attractiveness of each brand.
 4. Select a brand.
 5. Purchase if sufficient cash is available.
@@ -214,9 +214,9 @@ Each simulation period, a customer may:
 
 ---
 
-# 8. F&B Brand Agent
+# 8. Brand Agent
 
-Each brand represents an F&B company or restaurant brand.
+Each brand represents a company or restaurant brand.
 
 Example:
 
@@ -875,7 +875,7 @@ Customer
    │
    │ Purchase
    ↓
-F&B Brand
+Brand
    │
    ├── Wages ─────→ Employees
    │
@@ -963,7 +963,7 @@ Users should be able to access and operate the simulation through a browser with
 # 28. Proposed Repository Structure
 
 ```text
-fnb-competition-abm/
+competition-abm/
 │
 ├── app.py
 ├── model.py
@@ -1001,7 +1001,7 @@ This allows controlled experimentation and comparison between scenarios.
 
 # 30. Validation
 
-The model is not intended to perfectly predict real F&B markets.
+The model is not intended to perfectly predict real markets.
 
 Instead, validation should focus on whether the model behaves logically.
 
@@ -1044,7 +1044,7 @@ The initial model assumes:
 7. Customers have heterogeneous preferences.
 8. Brands compete for the same customer population.
 9. Market outcomes emerge from individual decisions.
-10. The simulation is an artificial economy, not a forecast of real-world F&B performance.
+10. The simulation is an artificial economy, not a forecast of real-world performance.
 
 ---
 
@@ -1249,4 +1249,4 @@ The central concept is:
 
 > **Individual agent decisions → Money transactions → Emergent market behavior**
 
-This makes the project both an **F&B competition simulation** and a simplified **artificial economy**.
+This makes the project both a **competition simulation** and a simplified **artificial economy**.

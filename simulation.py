@@ -1,4 +1,4 @@
-"""Command-line runner for the F&B Competition Agent-Based Model.
+"""Command-line runner for the Competition Agent-Based Model.
 
 Examples
 --------
@@ -27,7 +27,7 @@ import csv
 import os
 from typing import Optional
 
-from model import BrandConfig, FnBModel, ModelConfig
+from model import BrandConfig, CompetitionModel, ModelConfig
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
@@ -71,7 +71,7 @@ def save_csv(rows: list, path: str) -> None:
         writer.writerows(rows)
 
 
-def print_summary(title: str, model: FnBModel) -> None:
+def print_summary(title: str, model: CompetitionModel) -> None:
     s = model.summary()
     print(f"\n=== {title} ===")
     print(f"Ticks simulated:        {s['ticks']}")
@@ -91,7 +91,7 @@ def print_summary(title: str, model: FnBModel) -> None:
     print(f"Money conserved:        {'YES' if conserved else 'NO'}")
 
 
-def ascii_map(model: FnBModel, size: int = 20) -> str:
+def ascii_map(model: CompetitionModel, size: int = 20) -> str:
     """Render a rough ASCII map of customers and brand outlets."""
     grid = [["." for _ in range(size)] for _ in range(size)]
     world = model.cfg.world_size
@@ -188,7 +188,7 @@ def run_experiment(name: str, make_plots: bool) -> None:
     rows = []
     print(f"\n########## Experiment: {name} ##########")
     for label, cfg in scenarios:
-        model = FnBModel(cfg)
+        model = CompetitionModel(cfg)
         model.run()
         print_summary(f"{name} / {label}", model)
         save_csv(model.history, os.path.join(DATA_DIR, name, f"{label}.csv"))
@@ -219,7 +219,7 @@ def run_experiment(name: str, make_plots: bool) -> None:
 # CLI
 # ----------------------------------------------------------------------
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="F&B Competition Agent-Based Model")
+    p = argparse.ArgumentParser(description="Competition Agent-Based Model")
     p.add_argument("--experiment", choices=list(EXPERIMENTS) + ["all"],
                    help="run a predefined PRD experiment (or 'all')")
     p.add_argument("--ticks", type=int, default=365)
@@ -266,7 +266,7 @@ def main() -> None:
         brands=default_brands(b_x=args.b_x, b_y=args.b_y, price_b=args.price_b,
                               entry_tick=args.entry_tick, promo_b=args.promo_b),
     )
-    model = FnBModel(cfg)
+    model = CompetitionModel(cfg)
     model.run()
     print_summary("Custom scenario", model)
 

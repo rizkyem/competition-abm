@@ -1,4 +1,4 @@
-"""Static charts for the F&B Competition ABM (optional - requires matplotlib).
+"""Static charts for the Competition ABM (optional - requires matplotlib).
 
 ``simulation.py --plot`` calls :func:`plot_all`. If matplotlib is not
 installed this module raises ``ImportError`` on import, which the runner
