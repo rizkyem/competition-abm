@@ -1,0 +1,11 @@
+# Core simulation (model.py, agents.py, simulation.py, tests) uses ONLY the
+# Python standard library - no installation required.
+#
+# The packages below are only needed for the optional visualization extras.
+
+# Static charts: python3 simulation.py --plot
+matplotlib>=3.7
+
+# Interactive dashboard: streamlit run app.py
+streamlit>=1.30
+plotly>=5.18
