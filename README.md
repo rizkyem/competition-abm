@@ -5,7 +5,7 @@ finite-money artificial economy. Individual customers decide where to spend,
 money changes hands through transactions, and aggregate outcomes (revenue,
 market share, cash, geography) emerge from those decisions.
 
-Implements the MVP and core experiments described in `F&B Competition Agent-Based Model — PRD.md`.
+Implements the MVP and core experiments described in `Competition Agent-Based Model PRD.md`.
 
 ## Highlights
 
